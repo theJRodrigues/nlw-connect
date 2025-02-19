@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --spacing: 10px;
+  --color-*: initial;
+
+  --color-blue: #6f9de2;
+  --color-purple: #9871f3;
+
+  --color-danger: #f05d6c;
+
+  --color-gray-100: #dae4f2;
+  --color-gray-200: #c8d0da;
+  --color-gray-300: #95a1b1;
+  --color-gray-400: #6f7d90;
+  --color-gray-500: #2a313c;
+  --color-gray-600: #21252c;
+  --color-gray-700: #191d24;
+  --color-gray-800: #13161b;
+  --color-gray-900: #0f1216;
+
+  --font-heading: var(--font-oxanium);
+  --font-sans: var(--font-montserrat);
+
+  --semibold: 600;
+  --medium: 500;
+  --regular: 400;
+
+  --text-heading-hg: 72px;
+  --text-heading-hg--font-weight: var(--medium);
+  --text-heading-xl: 40px;
+  --text-heading-xl--font-weight: var(--semibold);
+  --text-heading-lg: 36px;
+  --text-heading-lg--font-weight: var(--semibold);
+  --text-heading-md: 24px;
+  --text-heading-md--font-weight: var(--semibold);
+  --text-heading-sm: 20px;
+  --text-heading-sm--font-weight: var(--semibold);
+
+  --body-lineheight: 160%;
+  --text-body-lg: 18px;
+  --text-body-lg--font-weight: var(--regular);
+  --text-body-lg--line-height: var(--body-lineheight);
+  --text-body-md: 16px;
+  --text-body-md--line-height: var(--body-lineheight);
+  --text-body-md--font-weight: var(--regular);
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: var(--body-lineheight);
+  --text-body-sm--font-weight: var(--regular);
+  --text-body-xs: 12px;
+  --text-body-xs--line-height: var(--body-lineheight);
+  --text-body-xs--font-weight: var(--semibold);
+  --text-button: 16px;
+  --text-button--line-height: var(--body-lineheight);
+  --text-button--font-weight: var(--semibold);
+
+  --radius-xl: 0.625rem;
+}
+
+.teste{
+  @apply [&:not(:has(input:placeholder-shown))]:text-gray-100 
+}
