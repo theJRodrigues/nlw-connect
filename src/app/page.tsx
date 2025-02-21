@@ -1,7 +1,5 @@
-import Image from "next/image";
-import logo from "../assets/logo.svg";
 import { Radio } from "lucide-react";
-import RegistrationForm from "@/components/registration-form/RegistrationForm";
+import SubscriptionForm from "@/components/subscription-form/SubscriptionForm";
 
 export default function Home() {
   return (
@@ -35,7 +33,7 @@ export default function Home() {
           <h2 className="text-gray-200 font-heading text-heading-sm">
             Inscrição
           </h2>
-          <RegistrationForm />
+          <SubscriptionForm />
         </div>
       </section>
     </>

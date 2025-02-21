@@ -27,8 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${oxanium.variable} ${montserrat.variable}`}>
       <body className="w-full bg-[url(/background.png)] bg-no-repeat bg-top sm:bg-right-top min-h-screen bg-gray-900 content-center relative">
-        <main className="w-fit m-auto p-2">
-          <Image
+      
+        <main className="max-w-[1240px] m-auto p-2">
+         <Image
             className="w-[108.5] h-[30] not-md:m-auto"
             src={logo}
             alt="devstage-logo"
