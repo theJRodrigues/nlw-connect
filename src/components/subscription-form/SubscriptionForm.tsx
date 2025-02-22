@@ -12,11 +12,12 @@ import InputField from "../InputRoot/InputField";
 import Button from "../Button";
 
 const SubscriptionSchema = z.object({
-  name: z.string().min(2, "Digite seu nome completo"),
+  name: z.string().min(1,'O nome é obrigatório').min(2, "Digite seu nome completo"),
   email: z
     .string()
-    .min(2, "Digite seu email Completo")
-    .email("Digite um email válido"),
+    .min(1, "O email é obrigatório")
+    .min(2, "Digite seu email completo")
+    .email("Digite um email válido")
 });
 
 type SubscriptionFormSchema = z.infer<typeof SubscriptionSchema>
@@ -38,7 +39,7 @@ const SubscriptionForm = () => {
     >
       <fieldset className="space-y-1">
         <fieldset>
-          <InputRoot>
+          <InputRoot error={errors.name && true}>
             <InputIcon>
               <User />
             </InputIcon>
@@ -48,10 +49,10 @@ const SubscriptionForm = () => {
               {...register("name")}
             />
           </InputRoot>
-          {errors.name && <p>teste</p>}
+          {errors.name && <p className="text-body-xs text-danger">{errors.name.message}</p>}
         </fieldset>
         <fieldset>
-          <InputRoot>
+          <InputRoot error={errors.email && true}>
             <InputIcon>
               <Mail />
             </InputIcon>
@@ -61,7 +62,7 @@ const SubscriptionForm = () => {
               {...register("email")}
             />
           </InputRoot>
-          {errors.email && <p>teste</p>}
+          {errors.email && <p className="text-body-xs text-danger">{errors.email.message}</p>}
         </fieldset>
       </fieldset>
 

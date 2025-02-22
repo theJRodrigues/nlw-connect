@@ -7,7 +7,7 @@ interface InputRootProps extends ComponentProps<"label"> {
 
 const InputRoot = ({ children,error = false, ...props }: InputRootProps) => {
   const labelStyle =
-    "py-1 px-2  flex gap-1 bg-gray-800 rounded-xl border border-gray-600 text-blue focus-within:text-gray-100 [&:not(:has(input:placeholder-shown))]:text-gray-100 focus-within:border-gray-100 focus-within:transition-colors duration-300 data-[error=true]:text-danger data-[error=true]:border-danger! data-[error=true]:[&:not(:has(input:placeholder-shown))]:text-danger";
+    "py-1 px-2  flex gap-1 bg-gray-800 rounded-xl border border-gray-600 text-blue focus-within:text-gray-100  focus-within:border-gray-100 transition-colors duration-300 data-[error=true]:text-danger data-[error=true]:border-danger not-data-[error=true]:[&:not(:has(input:placeholder-shown))]:text-gray-100";
   return (
     <label data-error={error} className={labelStyle} {...props}>
       {children}
