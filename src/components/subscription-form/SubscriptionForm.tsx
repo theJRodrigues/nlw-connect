@@ -10,35 +10,46 @@ import InputRoot from "../InputRoot/InputRoot";
 import InputIcon from "../InputRoot/InputIcon";
 import InputField from "../InputRoot/InputField";
 import Button from "../Button";
-import { subscribeToEvent } from "@/http/api";
+// import { subscribeToEvent } from "@/http/api";
 import { useRouter, useSearchParams } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 const SubscriptionSchema = z.object({
-  name: z.string().min(1,'O nome é obrigatório').min(2, "Digite seu nome completo"),
+  name: z
+    .string()
+    .min(1, "O nome é obrigatório")
+    .min(2, "Digite seu nome completo"),
   email: z
     .string()
     .min(1, "O email é obrigatório")
     .min(2, "Digite seu email completo")
-    .email("Digite um email válido")
+    .email("Digite um email válido"),
 });
 
-type SubscriptionFormSchema = z.infer<typeof SubscriptionSchema>
+type SubscriptionFormSchema = z.infer<typeof SubscriptionSchema>;
 
 const SubscriptionForm = () => {
-const router = useRouter();
-const searchParams = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const {
     register,
     handleSubmit,
-    formState: {errors}
-  } = useForm<SubscriptionFormSchema>({ resolver: zodResolver(SubscriptionSchema) });
+    formState: { errors },
+  } = useForm<SubscriptionFormSchema>({
+    resolver: zodResolver(SubscriptionSchema),
+  });
 
-  const onSubscribe = async ({name, email}: SubscriptionFormSchema) => {
-    const referrer = searchParams.get('referrer')
+  // const onSubscribe = async ({ name, email }: SubscriptionFormSchema) => {
+  //   const referrer = searchParams.get("referrer");
 
-   const{subscriberId}= await subscribeToEvent({name, email, referrer})
-    router.push(`/invite/${subscriberId}`)
+  //   // const { subscriberId } = await subscribeToEvent({ name, email, referrer });
+  //   router.push(`/invite/${subscriberId}`);
+  // };
+
+  const onSubscribe =  () => {
+    const subscriberId = uuidv4()
+    router.push(`/invite/${subscriberId}`);
   };
   return (
     <form
@@ -57,7 +68,9 @@ const searchParams = useSearchParams();
               {...register("name")}
             />
           </InputRoot>
-          {errors.name && <p className="text-body-xs text-danger">{errors.name.message}</p>}
+          {errors.name && (
+            <p className="text-body-xs text-danger">{errors.name.message}</p>
+          )}
         </fieldset>
         <fieldset>
           <InputRoot error={errors.email && true}>
@@ -70,7 +83,9 @@ const searchParams = useSearchParams();
               {...register("email")}
             />
           </InputRoot>
-          {errors.email && <p className="text-body-xs text-danger">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="text-body-xs text-danger">{errors.email.message}</p>
+          )}
         </fieldset>
       </fieldset>
 
