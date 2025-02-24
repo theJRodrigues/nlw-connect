@@ -10,6 +10,8 @@ import InputRoot from "../InputRoot/InputRoot";
 import InputIcon from "../InputRoot/InputIcon";
 import InputField from "../InputRoot/InputField";
 import Button from "../Button";
+import { subscribeToEvent } from "@/http/api";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SubscriptionSchema = z.object({
   name: z.string().min(1,'O nome é obrigatório').min(2, "Digite seu nome completo"),
@@ -23,14 +25,20 @@ const SubscriptionSchema = z.object({
 type SubscriptionFormSchema = z.infer<typeof SubscriptionSchema>
 
 const SubscriptionForm = () => {
+const router = useRouter();
+const searchParams = useSearchParams();
+
   const {
     register,
     handleSubmit,
     formState: {errors}
   } = useForm<SubscriptionFormSchema>({ resolver: zodResolver(SubscriptionSchema) });
 
-  const onSubscribe = (data: SubscriptionFormSchema) => {
-    console.log(data);
+  const onSubscribe = async ({name, email}: SubscriptionFormSchema) => {
+    const referrer = searchParams.get('referrer')
+
+   const{subscriberId}= await subscribeToEvent({name, email, referrer})
+    router.push(`/invite/${subscriberId}`)
   };
   return (
     <form

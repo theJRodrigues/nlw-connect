@@ -4,7 +4,14 @@ import RankingStats from "./ranking-stats/RankingStats";
 import RankingMedals from "./ranking-medals/RankingMedals";
 import InviteLink from "./invite-link/InviteLink";
 
-const InvitePage = () => {
+interface InvitePageProps{
+  params: Promise<{subscriberId: string}>
+}
+
+const InvitePage = async (props: InvitePageProps) => {
+  const {subscriberId} = await props.params
+
+  const inviteLink= `http://localhost:3333/invites/${subscriberId}`
   return (
     <div className="flex flex-col md:flex-row md:justify-between py-4">
       <section className="md:w-full md:max-w-58 flex flex-col justify-between space-y-1">
@@ -26,8 +33,8 @@ const InvitePage = () => {
             É só compartilhar o link abaixo e acompanhar as inscrições:
           </p>
         </div>
-        <InviteLink inviteLink="devstage.com/codecraft-summit-2025/1289"/>
-        <RankingStats />
+        <InviteLink inviteLink={inviteLink} />
+        <RankingStats subscriberId={subscriberId}/>
       </section>
       <RankingMedals />
     </div>

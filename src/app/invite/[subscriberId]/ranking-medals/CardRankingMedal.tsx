@@ -1,8 +1,8 @@
 import Image from 'next/image'
 interface CardRankingMedal{
-    position: string,
-    name: string,
-    score: number,
+    position: number | string,
+    name: string | string,
+    score: number | string,
     urlMedal: string
 }
 
